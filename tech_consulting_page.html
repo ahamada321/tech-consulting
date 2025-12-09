@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT技術相談サービス</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        h1 {
+            color: white;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .intro {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            animation: fadeIn 1s ease;
+        }
+
+        .intro h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .service-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+
+        .service-price span {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #666;
+        }
+
+        .service-description {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            color: #666;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            display: inline-block;
+            width: 100%;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(102,126,234,0.4);
+        }
+
+        .terms {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .terms h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .terms ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .terms li {
+            padding: 10px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .terms li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+
+        .highlight {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .intro, .terms {
+                padding: 25px;
+            }
+
+            .service-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>IT技術相談サービス</h1>
+            <p class="subtitle">エンジニア・ITコンサルタントの経験を活かした専門アドバイス</p>
+        </header>
+
+        <div class="intro">
+            <h2>こんなご相談に対応します</h2>
+            <p>Webサービスの立ち上げ方法、ノーコードツールの選定、システムアーキテクチャの設計、最新技術の導入相談など、先端のIT技術に関するあらゆる質問にお答えします。エンジニアやITコンサルタントとしての実務経験を基に、実践的なアドバイスを提供いたします。</p>
+        </div>
+
+        <div class="services">
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3 class="service-title">スポット相談</h3>
+                <div class="service-price">¥29,800<span>/回</span></div>
+                <p class="service-description">単発のご相談に最適</p>
+                <ul class="service-features">
+                    <li>1回の相談（60分）</li>
+                    <li>オンライン対応</li>
+                    <li>質問内容は事前共有可能</li>
+                    <li>相談後のフォローアップ</li>
+                </ul>
+                <button class="cta-button" onclick="alert('お問い合わせフォームへ遷移します')">お申し込み</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3 class="service-title">月2回プラン</h3>
+                <div class="service-price">¥39,800<span>/月</span></div>
+                <p class="service-description">継続的なサポートに</p>
+                <ul class="service-features">
+                    <li>月2回の相談（各60分）</li>
+                    <li>繰越可能（最大1ヶ月）</li>
+                    <li>優先予約対応</li>
+                    <li>メールでの簡易相談</li>
+                    <li>プロジェクト進捗フォロー</li>
+                </ul>
+                <button class="cta-button" onclick="alert('お問い合わせフォームへ遷移します')">お申し込み</button>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3 class="service-title">月4回プラン</h3>
+                <div class="service-price">¥69,800<span>/月</span></div>
+                <p class="service-description">本格的な技術顧問として</p>
+                <ul class="service-features">
+                    <li>月4回の相談（各60分）</li>
+                    <li>繰越可能（最大1ヶ月）</li>
+                    <li>最優先予約対応</li>
+                    <li>チャットサポート</li>
+                    <li>資料・ドキュメントレビュー</li>
+                    <li>緊急時の臨時相談対応</li>
+                </ul>
+                <button class="cta-button" onclick="alert('お問い合わせフォームへ遷移します')">お申し込み</button>
+            </div>
+        </div>
+
+        <div class="terms">
+            <h2>ご利用条件</h2>
+            <ul>
+                <li>相談はオンライン（Zoom、Google Meetなど）で実施いたします</li>
+                <li>事前に相談内容を共有いただくことで、より効果的なアドバイスが可能です</li>
+                <li>月次プランの繰越は最大1ヶ月までとなります（例：今月2回分のうち1回未使用の場合、翌月は最大3回相談可能）</li>
+                <li>キャンセルは前日までにご連絡ください</li>
+                <li>録音・録画は事前にご相談ください</li>
+            </ul>
+            <div class="highlight">
+                <strong>初回限定特典：</strong>スポット相談を初めてご利用の方は、30分の無料事前ヒアリングをご利用いただけます。
+            </div>
+        </div>
+    </div>
+</body>
+</html>
